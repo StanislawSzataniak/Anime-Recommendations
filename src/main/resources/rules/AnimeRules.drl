@@ -9,7 +9,7 @@ import java.util.ArrayList;
 rule "Start"
     when
         $q : Question( status == 1 )
-        $a : Answer( answer.equals("Start"));
+        $a : Answer( answer.equals("Start"))
         not UsedAnswer( answer == $a )
     then
 	    ArrayList<Answer> answers = new ArrayList<>();
@@ -24,10 +24,18 @@ rule "Start"
     	insert (new UsedAnswer($a));
 end
 
+rule "End"
+	when
+		$q : Question (status == 0)
+		f : FinalAnswer(answers != null)
+	then
+		System.out.println(f.getAnswers().get(0));
+end
+
 rule "A good start"
 	when
 		$q : Question( status == 1 )
-        $a : Answer( answer.equals("A good start"));
+        $a : Answer( answer.equals("A good start"))
         not UsedAnswer( answer == $a )
     then 
     	update($q) {
@@ -43,7 +51,7 @@ end
 rule "A classic"
 	when
 		$q : Question( status == 1 )
-        $a : Answer( answer.equals("A classic"));
+        $a : Answer( answer.equals("A classic"))
         not UsedAnswer( answer == $a )
     then 
     	update($q) {
@@ -59,7 +67,7 @@ end
 rule "Something ambitious"
 	when
 		$q : Question( status == 1 )
-        $a : Answer( answer.equals("Something ambitious"));
+        $a : Answer( answer.equals("Something ambitious"))
         not UsedAnswer( answer == $a )
     then 
     	ArrayList<Answer> answers = new ArrayList<>();
@@ -75,7 +83,7 @@ end
 rule "Thriller"
 	when
 		$q : Question( status == 1 )
-        $a : Answer( answer.equals("Thriller"));
+        $a : Answer( answer.equals("Thriller"))
         not UsedAnswer( answer == $a )
     then 
     	ArrayList<Answer> answers = new ArrayList<>();
@@ -87,12 +95,223 @@ rule "Thriller"
 	        $q.setAnswers(answers);
     	}
     	insert (new UsedAnswer($a));
-end   	
+end
+
+rule "Popular flicks"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Popular flicks"))
+        not UsedAnswer( answer == $a )
+    then 
+    	ArrayList<Answer> answers = new ArrayList<>();
+		answers.add(new Answer("Hunger games"));
+		answers.add(new Answer("Aliens"));
+		answers.add(new Answer("Crime drama mindgames with Grim Reaper"));
+		answers.add(new Answer("Terrorists"));
+    	update($q) {
+    		$q.setQuestion("Main theme?");
+	        $q.setAnswers(answers);
+    	}
+    	insert (new UsedAnswer($a));
+end     	
     	
+rule "Crime drama mindgames with Grim Reaper"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Crime drama mindgames with Grim Reaper"))
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Death note");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end  
     	
+rule "Aliens"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Aliens"))
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Parasyte");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end  
     	
+rule "Terrorists"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Terrorists"))
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Zankyou no Terror");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end
+
+rule "Hunger games"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Hunger games"))
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Mirai Nikki");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end      	
     	
-    	
-    	
-    	
+rule "Solid science fiction"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Popular flicks"))
+        not UsedAnswer( answer == $a )
+    then 
+    	ArrayList<Answer> answers = new ArrayList<>();
+		answers.add(new Answer("Time travel experiment"));
+		answers.add(new Answer("Psychological police dystopia"));
+    	update($q) {
+    		$q.setQuestion("Contemporary or futuristic?");
+	        $q.setAnswers(answers);
+    	}
+    	insert (new UsedAnswer($a));
+end
+
+rule "Time travel experiment"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Time travel experiment"))
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Steins;Gate");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end
+
+rule "Psychological police dystopia"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Psychological police dystopia"))
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Psycho-Pass");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end   
+
+rule "Let's go heavy"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Let's go heavy"))
+        not UsedAnswer( answer == $a )
+    then 
+    	ArrayList<Answer> answers = new ArrayList<>();
+		answers.add(new Answer("Crime drama"));
+		answers.add(new Answer("Gambling"));
+		answers.add(new Answer("I'm ready"));
+    	update($q) {
+    		$q.setQuestion("Pick your psychological thriller");
+	        $q.setAnswers(answers);
+    	}
+    	insert (new UsedAnswer($a));
+end        	
+
+rule "Crime drama"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Crime drama"))
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Monster");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end
+
+rule "Gambling"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Gambling"))
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Kaiji");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end
+
+rule "I'm ready"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("I'm ready"))
+        not UsedAnswer( answer == $a )
+    then 
+    	ArrayList<Answer> answers = new ArrayList<>();
+		answers.add(new Answer("Magical girls"));
+		answers.add(new Answer("Mechas"));
+    	update($q) {
+    		$q.setQuestion("No you're not");
+	        $q.setAnswers(answers);
+    	}
+    	insert (new UsedAnswer($a));
+end
+
+rule "Magical girls"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Magical girls"))
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Madoka Magica");
+    	answers.add("Yuuki Yuuna");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end
+ 
+rule "Mechas"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Mechas"))
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Neon Genesis Evangelion");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end       	
  

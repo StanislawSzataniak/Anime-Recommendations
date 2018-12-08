@@ -20,9 +20,9 @@ public class AnimeRecommendation {
         	
         	Question question = new Question();
         	question.setStatus(1);
-        	Answer answer = new Answer("Start");
         	kSession.insert(question);
-        	kSession.insert(answer);
+        	kSession.insert(new Answer("Start"));
+        	kSession.insert(new Answer("Mechas"));
         	kSession.fireAllRules();
         	kLogger.close();
         } catch (Throwable t) {
@@ -82,9 +82,18 @@ public class AnimeRecommendation {
 		}
 	}
 	
+	@PropertyReactive
 	public static class FinalAnswer {
 		private ArrayList<String> answers;
 		public FinalAnswer (ArrayList<String> answers) {
+			this.answers = answers;
+		}
+		
+		public ArrayList<String> getAnswers(){
+			return this.answers;
+		}
+		
+		public void setAnswers(ArrayList<String> answers){
 			this.answers = answers;
 		}
 		
