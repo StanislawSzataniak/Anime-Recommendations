@@ -13,14 +13,10 @@ rule "Start"
         not UsedAnswer( answer == $a )
     then
 	    ArrayList<Answer> answers = new ArrayList<>();
-	    Answer a1 = new Answer("A good start");
-	    Answer a2 = new Answer("A classic");
-	    Answer a3 = new Answer("Series? What if I want a movie?");
-	    Answer a4 = new Answer("Something ambitious");
-		answers.add(a1);
-		answers.add(a2);
-		answers.add(a3);
-		answers.add(a4);
+		answers.add(new Answer("A good start"));
+		answers.add(new Answer("A classic"));
+		answers.add(new Answer("Series? What if I want a movie?"));
+		answers.add(new Answer("Something ambitious"));
     	update($q) {
     		$q.setQuestion("What kind of series are you looking for?");
 	        $q.setAnswers(answers);
@@ -67,16 +63,31 @@ rule "Something ambitious"
         not UsedAnswer( answer == $a )
     then 
     	ArrayList<Answer> answers = new ArrayList<>();
-	    Answer a1 = new Answer("Thriller");
-	    Answer a2 = new Answer("Drama");
-		answers.add(a1);
-		answers.add(a2);
+		answers.add(new Answer("Thriller"));
+		answers.add(new Answer("Drama"));
     	update($q) {
     		$q.setQuestion("Intensive or calm?");
 	        $q.setAnswers(answers);
     	}
     	insert (new UsedAnswer($a));
-end      	
+end
+
+rule "Thriller"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Thriller"));
+        not UsedAnswer( answer == $a )
+    then 
+    	ArrayList<Answer> answers = new ArrayList<>();
+		answers.add(new Answer("Popular flicks"));
+		answers.add(new Answer("Let's go heavy"));
+		answers.add(new Answer("Solid science fiction"));
+    	update($q) {
+    		$q.setQuestion("Popular stuff or good stuff?");
+	        $q.setAnswers(answers);
+    	}
+    	insert (new UsedAnswer($a));
+end   	
     	
     	
     	
