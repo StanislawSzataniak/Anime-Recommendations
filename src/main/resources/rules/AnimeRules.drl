@@ -1,0 +1,87 @@
+package com.sample
+ 
+import com.sample.AnimeRecommendation.Question;
+import com.sample.AnimeRecommendation.Answer;
+import com.sample.AnimeRecommendation.UsedAnswer;
+import com.sample.AnimeRecommendation.FinalAnswer;
+import java.util.ArrayList;
+ 
+rule "Start"
+    when
+        $q : Question( status == 1 )
+        $a : Answer( answer.equals("Start"));
+        not UsedAnswer( answer == $a )
+    then
+	    ArrayList<Answer> answers = new ArrayList<>();
+	    Answer a1 = new Answer("A good start");
+	    Answer a2 = new Answer("A classic");
+	    Answer a3 = new Answer("Series? What if I want a movie?");
+	    Answer a4 = new Answer("Something ambitious");
+		answers.add(a1);
+		answers.add(a2);
+		answers.add(a3);
+		answers.add(a4);
+    	update($q) {
+    		$q.setQuestion("What kind of series are you looking for?");
+	        $q.setAnswers(answers);
+    	}
+    	insert (new UsedAnswer($a));
+end
+
+rule "A good start"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("A good start"));
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Fullmetal Alchemist: Brotherhood");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end   	
+    	
+    	
+rule "A classic"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("A classic"));
+        not UsedAnswer( answer == $a )
+    then 
+    	update($q) {
+    		$q.setStatus(0);
+    	}
+    	ArrayList<String> answers = new ArrayList<>();
+    	answers.add("Cowboy Bebop");
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer($a));
+end   	
+    	
+
+rule "Something ambitious"
+	when
+		$q : Question( status == 1 )
+        $a : Answer( answer.equals("Something ambitious"));
+        not UsedAnswer( answer == $a )
+    then 
+    	ArrayList<Answer> answers = new ArrayList<>();
+	    Answer a1 = new Answer("Thriller");
+	    Answer a2 = new Answer("Drama");
+		answers.add(a1);
+		answers.add(a2);
+    	update($q) {
+    		$q.setQuestion("Intensive or calm?");
+	        $q.setAnswers(answers);
+    	}
+    	insert (new UsedAnswer($a));
+end      	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+ 
