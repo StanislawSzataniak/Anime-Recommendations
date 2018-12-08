@@ -1,2 +1,5 @@
 #target dir
 target/
+
+#log file
+.log
