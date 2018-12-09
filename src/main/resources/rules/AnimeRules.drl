@@ -7,12 +7,6 @@ import java.util.ArrayList;
 global com.sample.NewGUI AnimeGUI;
 global String CurrentAnswer;
 
-/*declare Question
-	question : String
-	answers : Answer[]
-	status : int
-end*/
-
 declare Answer
 	answer : String
 end
