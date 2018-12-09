@@ -17,14 +17,10 @@ public class AnimeRecommendation {
     	    KieContainer kContainer = ks.getKieClasspathContainer();
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
         	KieRuntimeLogger kLogger = ks.getLoggers().newFileLogger(kSession, "test");
-        	
-        	Question question = new Question();
-        	question.setStatus(1);
-        	Answer answer = new Answer("Start");
-        	kSession.insert(question);
-        	kSession.insert(answer);
+        	NewGUI gui = new NewGUI(kSession, kLogger);
+        	kSession.setGlobal("AnimeGUI", gui);
+        	kSession.insert("Start");
         	kSession.fireAllRules();
-        	kLogger.close();
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -36,11 +32,16 @@ public class AnimeRecommendation {
 		private String question;
 		private ArrayList<Answer> answers;
 		private int status;
+		public Question (String question, ArrayList<Answer> answers, int status) {
+			this.question = question;
+			this.answers = answers;
+			this.status = status;
+		}
 		public void setQuestion(String question) {
 			this.question = question;
 		}
-		public void setAnswers (ArrayList<Answer> answer) {
-			this.answers = answer;
+		public void setAnswers (ArrayList<Answer> answers) {
+			this.answers = answers;
 		}
 		public ArrayList<Answer> getAnswers() {
 			return this.answers;
@@ -51,7 +52,9 @@ public class AnimeRecommendation {
 		public void setStatus(int status) {
 			this.status = status;
 		}
-		
+		public String getQuestion() {
+			return this.question;
+		}
 	}
 	
 	@PropertyReactive
@@ -82,9 +85,18 @@ public class AnimeRecommendation {
 		}
 	}
 	
+	@PropertyReactive
 	public static class FinalAnswer {
 		private ArrayList<String> answers;
 		public FinalAnswer (ArrayList<String> answers) {
+			this.answers = answers;
+		}
+		
+		public ArrayList<String> getAnswers(){
+			return this.answers;
+		}
+		
+		public void setAnswers(ArrayList<String> answers){
 			this.answers = answers;
 		}
 		
