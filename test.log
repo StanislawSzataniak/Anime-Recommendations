@@ -62,78 +62,306 @@
     <org.drools.core.audit.event.ObjectLogEvent>
       <type>1</type>
       <factId>4</factId>
-      <objectToString>A classic</objectToString>
+      <objectToString>Something ambitious</objectToString>
     </org.drools.core.audit.event.ObjectLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>4</type>
       <activationId>init [4]</activationId>
       <rule>init</rule>
-      <declarations>s=A classic</declarations>
+      <declarations>s=Something ambitious</declarations>
       <factHandleIds>4</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>6</type>
       <activationId>init [4]</activationId>
       <rule>init</rule>
-      <declarations>s=A classic</declarations>
+      <declarations>s=Something ambitious</declarations>
       <factHandleIds>4</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ObjectLogEvent>
       <type>1</type>
       <factId>5</factId>
-      <objectToString>Answer( answer=A classic )</objectToString>
+      <objectToString>Answer( answer=Something ambitious )</objectToString>
     </org.drools.core.audit.event.ObjectLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>7</type>
       <activationId>init [4]</activationId>
       <rule>init</rule>
-      <declarations>s=A classic</declarations>
+      <declarations>s=Something ambitious</declarations>
       <factHandleIds>4</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>4</type>
-      <activationId>A classic [5]</activationId>
-      <rule>A classic</rule>
-      <declarations>a=Answer( answer=A classic )</declarations>
+      <activationId>Something ambitious [5]</activationId>
+      <rule>Something ambitious</rule>
+      <declarations>a=Answer( answer=Something ambitious )</declarations>
       <factHandleIds>5</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>6</type>
-      <activationId>A classic [5]</activationId>
-      <rule>A classic</rule>
-      <declarations>a=Answer( answer=A classic )</declarations>
+      <activationId>Something ambitious [5]</activationId>
+      <rule>Something ambitious</rule>
+      <declarations>a=Answer( answer=Something ambitious )</declarations>
       <factHandleIds>5</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ObjectLogEvent>
       <type>1</type>
       <factId>6</factId>
-      <objectToString>FinalAnswer( answers=[Answer( answer=Cowboy Bebop )] )</objectToString>
-    </org.drools.core.audit.event.ObjectLogEvent>
-    <org.drools.core.audit.event.ObjectLogEvent>
-      <type>1</type>
-      <factId>7</factId>
-      <objectToString>UsedAnswer( answer=A classic )</objectToString>
+      <objectToString>UsedAnswer( answer=Something ambitious )</objectToString>
     </org.drools.core.audit.event.ObjectLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>7</type>
-      <activationId>A classic [5]</activationId>
-      <rule>A classic</rule>
-      <declarations>a=Answer( answer=A classic )</declarations>
+      <activationId>Something ambitious [5]</activationId>
+      <rule>Something ambitious</rule>
+      <declarations>a=Answer( answer=Something ambitious )</declarations>
       <factHandleIds>5</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>7</factId>
+      <objectToString>Thriller</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>4</type>
-      <activationId>End [6]</activationId>
-      <rule>End</rule>
-      <declarations>f=FinalAnswer( answers=[Answer( answer=Cowboy Bebop )] )</declarations>
-      <factHandleIds>6</factHandleIds>
+      <activationId>init [7]</activationId>
+      <rule>init</rule>
+      <declarations>s=Thriller</declarations>
+      <factHandleIds>7</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>6</type>
-      <activationId>End [6]</activationId>
+      <activationId>init [7]</activationId>
+      <rule>init</rule>
+      <declarations>s=Thriller</declarations>
+      <factHandleIds>7</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>8</factId>
+      <objectToString>Answer( answer=Thriller )</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>init [7]</activationId>
+      <rule>init</rule>
+      <declarations>s=Thriller</declarations>
+      <factHandleIds>7</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>Thriller [8]</activationId>
+      <rule>Thriller</rule>
+      <declarations>a=Answer( answer=Thriller )</declarations>
+      <factHandleIds>8</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>Thriller [8]</activationId>
+      <rule>Thriller</rule>
+      <declarations>a=Answer( answer=Thriller )</declarations>
+      <factHandleIds>8</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>9</factId>
+      <objectToString>UsedAnswer( answer=Thriller )</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>Thriller [8]</activationId>
+      <rule>Thriller</rule>
+      <declarations>a=Answer( answer=Thriller )</declarations>
+      <factHandleIds>8</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>10</factId>
+      <objectToString>Let&apos;s go heavy</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>init [10]</activationId>
+      <rule>init</rule>
+      <declarations>s=Let&apos;s go heavy</declarations>
+      <factHandleIds>10</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>init [10]</activationId>
+      <rule>init</rule>
+      <declarations>s=Let&apos;s go heavy</declarations>
+      <factHandleIds>10</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>11</factId>
+      <objectToString>Answer( answer=Let&apos;s go heavy )</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>init [10]</activationId>
+      <rule>init</rule>
+      <declarations>s=Let&apos;s go heavy</declarations>
+      <factHandleIds>10</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>Let&apos;s go heavy [11]</activationId>
+      <rule>Let&apos;s go heavy</rule>
+      <declarations>a=Answer( answer=Let&apos;s go heavy )</declarations>
+      <factHandleIds>11</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>Let&apos;s go heavy [11]</activationId>
+      <rule>Let&apos;s go heavy</rule>
+      <declarations>a=Answer( answer=Let&apos;s go heavy )</declarations>
+      <factHandleIds>11</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>12</factId>
+      <objectToString>UsedAnswer( answer=Let&apos;s go heavy )</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>Let&apos;s go heavy [11]</activationId>
+      <rule>Let&apos;s go heavy</rule>
+      <declarations>a=Answer( answer=Let&apos;s go heavy )</declarations>
+      <factHandleIds>11</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>13</factId>
+      <objectToString>I&apos;m ready</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>init [13]</activationId>
+      <rule>init</rule>
+      <declarations>s=I&apos;m ready</declarations>
+      <factHandleIds>13</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>init [13]</activationId>
+      <rule>init</rule>
+      <declarations>s=I&apos;m ready</declarations>
+      <factHandleIds>13</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>14</factId>
+      <objectToString>Answer( answer=I&apos;m ready )</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>init [13]</activationId>
+      <rule>init</rule>
+      <declarations>s=I&apos;m ready</declarations>
+      <factHandleIds>13</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>I&apos;m ready [14]</activationId>
+      <rule>I&apos;m ready</rule>
+      <declarations>a=Answer( answer=I&apos;m ready )</declarations>
+      <factHandleIds>14</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>I&apos;m ready [14]</activationId>
+      <rule>I&apos;m ready</rule>
+      <declarations>a=Answer( answer=I&apos;m ready )</declarations>
+      <factHandleIds>14</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>15</factId>
+      <objectToString>UsedAnswer( answer=I&apos;m ready )</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>I&apos;m ready [14]</activationId>
+      <rule>I&apos;m ready</rule>
+      <declarations>a=Answer( answer=I&apos;m ready )</declarations>
+      <factHandleIds>14</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>16</factId>
+      <objectToString>Magical girls</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>init [16]</activationId>
+      <rule>init</rule>
+      <declarations>s=Magical girls</declarations>
+      <factHandleIds>16</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>init [16]</activationId>
+      <rule>init</rule>
+      <declarations>s=Magical girls</declarations>
+      <factHandleIds>16</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>17</factId>
+      <objectToString>Answer( answer=Magical girls )</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>init [16]</activationId>
+      <rule>init</rule>
+      <declarations>s=Magical girls</declarations>
+      <factHandleIds>16</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>Magical girls [17]</activationId>
+      <rule>Magical girls</rule>
+      <declarations>a=Answer( answer=Magical girls )</declarations>
+      <factHandleIds>17</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>Magical girls [17]</activationId>
+      <rule>Magical girls</rule>
+      <declarations>a=Answer( answer=Magical girls )</declarations>
+      <factHandleIds>17</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>18</factId>
+      <objectToString>FinalAnswer( answers=[Answer( answer=Madoka Magica ), Answer( answer=Yuuki Yuuna )] )</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>19</factId>
+      <objectToString>UsedAnswer( answer=Magical girls )</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>Magical girls [17]</activationId>
+      <rule>Magical girls</rule>
+      <declarations>a=Answer( answer=Magical girls )</declarations>
+      <factHandleIds>17</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>End [18]</activationId>
       <rule>End</rule>
-      <declarations>f=FinalAnswer( answers=[Answer( answer=Cowboy Bebop )] )</declarations>
-      <factHandleIds>6</factHandleIds>
+      <declarations>f=FinalAnswer( answers=[Answer( answer=Madoka Magica ), Answer( answer=Yuuki Yuuna )] )</declarations>
+      <factHandleIds>18</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>End [18]</activationId>
+      <rule>End</rule>
+      <declarations>f=FinalAnswer( answers=[Answer( answer=Madoka Magica ), Answer( answer=Yuuki Yuuna )] )</declarations>
+      <factHandleIds>18</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
   </events>
 </org.drools.core.audit.WorkingMemoryLog>
