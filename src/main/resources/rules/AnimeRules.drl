@@ -252,3 +252,231 @@ rule "Mechas"
     	insert (new UsedAnswer(a.getAnswer()));
 end
 
+rule "Drama"
+	when
+        a : Answer( answer.equals("Drama"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers ={new Answer("FEELS"), new Answer("Serious story")};
+    	String question = "And by drama you mean...";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "FEELS"
+	when
+        a : Answer( answer.equals("FEELS"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers ={new Answer("Happy, fluffy and cute"), new Answer("Warm and bittersweet"), new Answer("I've got tissues")};
+    	String question = "What kind of feels?";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Happy, fluffy and cute"
+	when
+        a : Answer( answer.equals("Happy, fluffy and cute"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers ={new Answer("Jesus no"), new Answer("...what?")};
+    	String question = "PTSD?";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Jesus no"
+	when
+        a : Answer( answer.equals("Jesus no"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("K-On!"), new Answer("Aria"), new Answer("Barakamon"), new Answer("Lucky Star")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "...what?"
+	when
+        a : Answer( answer.equals("...what?"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("Yuuki Yuuna"), new Answer("Madoka Magica"), new Answer("Sora no Woto")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Warm and bittersweet"
+	when
+        a : Answer( answer.equals("Warm and bittersweet"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("Sakurasou no Pet no Kanojo"), new Answer("Hanasaku Iroha")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "I've got tissues"
+	when
+        a : Answer( answer.equals("I've got tissues"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers ={new Answer("Something shorter?"), new Answer("Maybe"), new Answer("Bring it on")};
+    	String question = "Ready to endure through slow bulldup";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Something shorter?"
+	when
+        a : Answer( answer.equals("Something shorter?"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("Angel Beats!"), new Answer("Haibane Renmei")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Maybe"
+	when
+        a : Answer( answer.equals("Maybe"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers ={new Answer("Kids reuniting years after death of a childhood frined"), new Answer("Young pianist struggling after losing his mother")};
+    	String question = "Overcoming grief?";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Kids reuniting years after death of a childhood frined"
+	when
+        a : Answer( answer.equals("Kids reuniting years after death of a childhood frined"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("AnoHana")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Young pianist struggling after losing his mother"
+	when
+        a : Answer( answer.equals("Young pianist struggling after losing his mother"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("Your Lie in April")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Bring it on"
+	when
+        a : Answer( answer.equals("Bring it on"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("Clannad"), new Answer("Clannad: After Story")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Serious story"
+	when
+        a : Answer( answer.equals("Serious story"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers ={new Answer("Road trip"), new Answer("Postapocalyptical rural utopia"), new Answer("Science fiction")};
+    	String question = "Genre?";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Road trip"
+	when
+        a : Answer( answer.equals("Road trip"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers ={new Answer("Medieval Europe and its economy"), new Answer("Rulal Japan and spirit stuff")};
+    	String question = "Setting?";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Medieval Europe and its economy"
+	when
+        a : Answer( answer.equals("Medieval Europe and its economy"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("Spice&Wolf")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Rulal Japan and spirit stuff"
+	when
+        a : Answer( answer.equals("Rulal Japan and spirit stuff"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("Mushishi")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Postapocalyptical rural utopia"
+	when
+        a : Answer( answer.equals("Postapocalyptical rural utopia"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("Shinsekai yori")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Science fiction"
+	when
+        a : Answer( answer.equals("Science fiction"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers ={new Answer("Hard existential sci-fi"),  new Answer("Old sci-fi space opera epic"), new Answer("Life of space garbage collectors"),};
+    	String question = "How deep do we go?";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Hard existential sci-fi"
+	when
+        a : Answer( answer.equals("Hard existential sci-fi"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("Ergo Proxy"), new Answer("Serial Experiments Lain"), new Answer("Texnoholyze")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Old sci-fi space opera epic"
+	when
+        a : Answer( answer.equals("Old sci-fi space opera epic"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("Legend of the Galactic Heroes")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+rule "Life of space garbage collectors"
+	when
+        a : Answer( answer.equals("Life of space garbage collectors"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("Planetes")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+
+
+rule "Series? What if I want a movie?"
+	when
+        a : Answer( answer.equals("Series? What if I want a movie?"))
+        not UsedAnswer( answer == a.getAnswer() )
+    then 
+    	Answer[] answers = {new Answer("We'd need an entire new chart")};
+    	insert (new FinalAnswer (answers));
+    	insert (new UsedAnswer(a.getAnswer()));
+end
