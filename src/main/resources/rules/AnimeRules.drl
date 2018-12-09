@@ -1,327 +1,254 @@
 package com.sample
  
-import com.sample.AnimeRecommendation.Question;
-import com.sample.AnimeRecommendation.Answer;
-import com.sample.AnimeRecommendation.UsedAnswer;
-import com.sample.AnimeRecommendation.FinalAnswer;
-import com.sample.GUI.*;
+import com.sample.NewGUI.*;
 import org.kie.api.runtime.*
 import java.util.ArrayList;
  
-global com.sample.GUI AnimeGUI;
- 
+global com.sample.NewGUI AnimeGUI;
+global String CurrentAnswer;
+
+/*declare Question
+	question : String
+	answers : Answer[]
+	status : int
+end*/
+
+declare Answer
+	answer : String
+end
+
+declare FinalAnswer
+	answers : Answer[]
+end
+
+declare UsedAnswer
+	answer : String
+end
+
+function void askQuestion(String question, Answer[] answers, NewGUI AnimeGUI) {
+	String[] ar = new String[answers.length];
+	for (int i = 0; i < answers.length; i++) {
+		ar[i] = answers[i].getAnswer();
+	}
+	AnimeGUI.newFrame(question, ar);
+}
+
+rule "init"
+	when
+		s : String()
+		not UsedAnswer(answer == s)
+	then
+		insert (new Answer(s));
+end
+
 rule "Start"
     when
-    	$a : Answer(answer.equals("Start"))
-    	not UsedAnswer( answer == $a )
+    	a : Answer(answer.equals("Start"))
+    	not UsedAnswer(answer == a.getAnswer())
     then
-	    ArrayList<Answer> answers = new ArrayList<>();
-		answers.add(new Answer("A good start"));
-		answers.add(new Answer("A classic"));
-		answers.add(new Answer("Series? What if I want a movie?"));
-		answers.add(new Answer("Something ambitious"));
-		Question q = new Question("What kind of series are you looking for?", answers, 1);
-		AnimeGUI.setupGUI(q);
-		insert (q);
-		insert (new UsedAnswer($a));
-
+		String question = "What kind of series are you looking for?";
+		Answer[] answers = {new Answer("A good start"), new Answer("A classic"), new Answer("Series? What if I want a movie?"), new Answer("Something ambitious")};
+		askQuestion(question, answers, AnimeGUI);
+		insert (new UsedAnswer(a.getAnswer()));
 end
 
 rule "End"
 	when
-		$q : Question (status == 0)
-		$f : FinalAnswer()
+		f : FinalAnswer()
 	then
-		System.out.println($f.getAnswers().get(0));
+		askQuestion("Your result", f.getAnswers(), AnimeGUI);
 		AnimeGUI.kLogger.close();
 end
 
+
 rule "A good start"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("A good start"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("A good start"))
+        not UsedAnswer(answer == a.getAnswer())
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Fullmetal Alchemist: Brotherhood");
+    	Answer[] answers = {new Answer("Fullmetal Alchemist: Brotherhood")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
+    	insert (new UsedAnswer(a.getAnswer()));
 end   	
     	
     	
 rule "A classic"
 	when
-		$q : Question( status == 1 )
-        $a : Answer( answer.equals("A classic"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("A classic"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Cowboy Bebop");
+    	Answer[] answers = {new Answer("Cowboy Bebop")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
-end   	
+    	insert (new UsedAnswer(a.getAnswer()));
+end
     	
 
 rule "Something ambitious"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Something ambitious"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Something ambitious"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	ArrayList<Answer> answers = new ArrayList<>();
-		answers.add(new Answer("Thriller"));
-		answers.add(new Answer("Drama"));
-		update($q) {
-			$q.setQuestion("Intensive or calm?");
-		    $q.setAnswers(answers);
-		}
-    	AnimeGUI.addElementsToLayout();
-    	insert (new UsedAnswer($a));
+    	Answer[] answers ={new Answer("Thriller"), new Answer("Drama")};
+		String question = "Intensive or calm?";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
 end
 
 rule "Thriller"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Thriller"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Thriller"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	ArrayList<Answer> answers = new ArrayList<>();
-		answers.add(new Answer("Popular flicks"));
-		answers.add(new Answer("Let's go heavy"));
-		answers.add(new Answer("Solid science fiction"));
-    	update($q) {
-    		$q.setQuestion("Popular stuff or good stuff?");
-	        $q.setAnswers(answers);
-    	}
-    	AnimeGUI.addElementsToLayout();
-    	insert (new UsedAnswer($a));
+    	Answer[] answers ={new Answer("Popular flicks"), new Answer("Let's go heavy"), new Answer("Solid science fiction")};
+    	String question = "Popular stuff or good stuff?";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
 end
 
 rule "Popular flicks"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Popular flicks"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Popular flicks"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	ArrayList<Answer> answers = new ArrayList<>();
-		answers.add(new Answer("Hunger games"));
-		answers.add(new Answer("Aliens"));
-		answers.add(new Answer("Crime drama mindgames with Grim Reaper"));
-		answers.add(new Answer("Terrorists"));
-    	update($q) {
-    		$q.setQuestion("Main theme?");
-	        $q.setAnswers(answers);
-    	}
-    	AnimeGUI.addElementsToLayout();
-    	insert (new UsedAnswer($a));
+    	Answer[] answers ={new Answer("Hunger games"), new Answer("Aliens"), new Answer("Crime drama mindgames with Grim Reaper"), new Answer("Terrorists")};
+    	String question = "Main theme?";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
 end     	
     	
 rule "Crime drama mindgames with Grim Reaper"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Crime drama mindgames with Grim Reaper"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Crime drama mindgames with Grim Reaper"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Death note");
+    	Answer[] answers ={new Answer("Death note")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
+    	insert (new UsedAnswer(a.getAnswer()));
 end  
     	
 rule "Aliens"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Aliens"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Aliens"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Parasyte");
+    	Answer[] answers ={new Answer("Parasyte")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
+    	insert (new UsedAnswer(a.getAnswer()));
 end  
     	
 rule "Terrorists"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Terrorists"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Terrorists"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Zankyou no Terror");
+    	Answer[] answers ={new Answer("Zankyou no Terror")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
+    	insert (new UsedAnswer(a.getAnswer()));
 end
 
 rule "Hunger games"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Hunger games"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Hunger games"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Mirai Nikki");
+    	Answer[] answers = {new Answer("Mirai Nikki")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
+    	insert (new UsedAnswer(a.getAnswer()));
 end      	
     	
 rule "Solid science fiction"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Popular flicks"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Popular flicks"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	ArrayList<Answer> answers = new ArrayList<>();
-		answers.add(new Answer("Time travel experiment"));
-		answers.add(new Answer("Psychological police dystopia"));
-    	update($q) {
-    		$q.setQuestion("Contemporary or futuristic?");
-	        $q.setAnswers(answers);
-    	}
-    	AnimeGUI.addElementsToLayout();
-    	insert (new UsedAnswer($a));
+    	Answer[] answers ={new Answer("Time travel experiment"), new Answer("Psychological police dystopia")};
+    	String question = "Contemporary or futuristic?";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
 end
 
 rule "Time travel experiment"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Time travel experiment"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Time travel experiment"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Steins;Gate");
+    	Answer[] answers = {new Answer("Steins;Gate")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
+    	insert (new UsedAnswer(a.getAnswer()));
 end
 
 rule "Psychological police dystopia"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Psychological police dystopia"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Psychological police dystopia"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Psycho-Pass");
+    	Answer[] answers = {new Answer("Psycho-Pass")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
+    	insert (new UsedAnswer(a.getAnswer()));
 end   
 
 rule "Let's go heavy"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Let's go heavy"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Let's go heavy"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	ArrayList<Answer> answers = new ArrayList<>();
-		answers.add(new Answer("Crime drama"));
-		answers.add(new Answer("Gambling"));
-		answers.add(new Answer("I'm ready"));
-    	update($q) {
-    		$q.setQuestion("Pick your psychological thriller");
-	        $q.setAnswers(answers);
-    	}
-    	AnimeGUI.addElementsToLayout();
-    	insert (new UsedAnswer($a));
+    	Answer[] answers = {new Answer("Crime drama"), new Answer("Gambling"), new Answer("I'm ready")};
+    	String question = "Pick your psychological thriller";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
 end        	
 
 rule "Crime drama"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Crime drama"))
-        not UsedAnswer( answer == $a )
+		
+        a : Answer( answer.equals("Crime drama"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Monster");
+    	Answer[] answers = {new Answer("Monster")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
+    	insert (new UsedAnswer(a.getAnswer()));
 end
 
 rule "Gambling"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Gambling"))
-        not UsedAnswer( answer == $a )
+		
+        a : Answer( answer.equals("Gambling"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Kaiji");
+    	Answer[] answers = {new Answer("Kaiji")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
+    	insert (new UsedAnswer(a.getAnswer()));
 end
 
 rule "I'm ready"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("I'm ready"))
-        not UsedAnswer( answer == $a )
+		
+        a : Answer( answer.equals("I'm ready"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	ArrayList<Answer> answers = new ArrayList<>();
-		answers.add(new Answer("Magical girls"));
-		answers.add(new Answer("Mechas"));
-    	update($q) {
-    		$q.setQuestion("No you're not");
-	        $q.setAnswers(answers);
-    	}
-    	AnimeGUI.addElementsToLayout();
-    	insert (new UsedAnswer($a));
+    	Answer[] answers = {new Answer("Magical girls"), new Answer("Mechas")};
+    	String question = "No you're not";
+    	askQuestion(question, answers, AnimeGUI);
+    	insert (new UsedAnswer(a.getAnswer()));
 end
 
 rule "Magical girls"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Magical girls"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Magical girls"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Madoka Magica");
-    	answers.add("Yuuki Yuuna");
+    	Answer[] answers = {new Answer("Madoka Magica"), new Answer("Yuuki Yuuna")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
+    	insert (new UsedAnswer(a.getAnswer()));
 end
  
 rule "Mechas"
 	when
-		$q : Question()
-        $a : Answer( answer.equals("Mechas"))
-        not UsedAnswer( answer == $a )
+        a : Answer( answer.equals("Mechas"))
+        not UsedAnswer( answer == a.getAnswer() )
     then 
-    	update($q) {
-    		$q.setStatus(0);
-    	}
-    	ArrayList<String> answers = new ArrayList<>();
-    	answers.add("Neon Genesis Evangelion");
+    	Answer[] answers = {new Answer("Neon Genesis Evangelion")};
     	insert (new FinalAnswer (answers));
-    	insert (new UsedAnswer($a));
-end       	
- 
+    	insert (new UsedAnswer(a.getAnswer()));
+end
+

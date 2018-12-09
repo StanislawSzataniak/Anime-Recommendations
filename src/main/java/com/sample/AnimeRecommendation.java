@@ -17,9 +17,9 @@ public class AnimeRecommendation {
     	    KieContainer kContainer = ks.getKieClasspathContainer();
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
         	KieRuntimeLogger kLogger = ks.getLoggers().newFileLogger(kSession, "test");
-        	GUI gui = new GUI(kSession, kLogger);
+        	NewGUI gui = new NewGUI(kSession, kLogger);
         	kSession.setGlobal("AnimeGUI", gui);
-        	kSession.insert(new Answer("Start"));
+        	kSession.insert("Start");
         	kSession.fireAllRules();
         } catch (Throwable t) {
             t.printStackTrace();
