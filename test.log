@@ -62,25 +62,79 @@
     <org.drools.core.audit.event.ObjectLogEvent>
       <type>1</type>
       <factId>4</factId>
-      <objectToString>Something ambitious</objectToString>
+      <objectToString>Series? What if I want a movie?</objectToString>
     </org.drools.core.audit.event.ObjectLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>4</type>
       <activationId>init [4]</activationId>
       <rule>init</rule>
-      <declarations>s=Something ambitious</declarations>
+      <declarations>s=Series? What if I want a movie?</declarations>
       <factHandleIds>4</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>6</type>
       <activationId>init [4]</activationId>
       <rule>init</rule>
-      <declarations>s=Something ambitious</declarations>
+      <declarations>s=Series? What if I want a movie?</declarations>
       <factHandleIds>4</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ObjectLogEvent>
       <type>1</type>
       <factId>5</factId>
-      <objectToString>Answer( answer=Something ambitious )</objectToString>
+      <objectToString>Answer( answer=Series? What if I want a movie? )</objectToString>
     </org.drools.core.audit.event.ObjectLogEvent>
-    <
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>init [4]</activationId>
+      <rule>init</rule>
+      <declarations>s=Series? What if I want a movie?</declarations>
+      <factHandleIds>4</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>Series? What if I want a movie? [5]</activationId>
+      <rule>Series? What if I want a movie?</rule>
+      <declarations>a=Answer( answer=Series? What if I want a movie? )</declarations>
+      <factHandleIds>5</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>Series? What if I want a movie? [5]</activationId>
+      <rule>Series? What if I want a movie?</rule>
+      <declarations>a=Answer( answer=Series? What if I want a movie? )</declarations>
+      <factHandleIds>5</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>6</factId>
+      <objectToString>FinalAnswer( answers=[Answer( answer=We&apos;d need an entire new chart )] )</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ObjectLogEvent>
+      <type>1</type>
+      <factId>7</factId>
+      <objectToString>UsedAnswer( answer=Series? What if I want a movie? )</objectToString>
+    </org.drools.core.audit.event.ObjectLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>7</type>
+      <activationId>Series? What if I want a movie? [5]</activationId>
+      <rule>Series? What if I want a movie?</rule>
+      <declarations>a=Answer( answer=Series? What if I want a movie? )</declarations>
+      <factHandleIds>5</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>4</type>
+      <activationId>End [6]</activationId>
+      <rule>End</rule>
+      <declarations>f=FinalAnswer( answers=[Answer( answer=We&apos;d need an entire new chart )] )</declarations>
+      <factHandleIds>6</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+    <org.drools.core.audit.event.ActivationLogEvent>
+      <type>6</type>
+      <activationId>End [6]</activationId>
+      <rule>End</rule>
+      <declarations>f=FinalAnswer( answers=[Answer( answer=We&apos;d need an entire new chart )] )</declarations>
+      <factHandleIds>6</factHandleIds>
+    </org.drools.core.audit.event.ActivationLogEvent>
+  </events>
+</org.drools.core.audit.WorkingMemoryLog>
+</object-stream>

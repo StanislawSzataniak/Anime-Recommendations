@@ -10,7 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.kie.api.KieServices;
 import org.kie.api.logger.KieRuntimeLogger;
+import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
 public class NewGUI implements ActionListener{
@@ -43,6 +45,23 @@ public class NewGUI implements ActionListener{
         panel.revalidate();
     }
     
+    public void finalFrame(String question, String[] answers) {
+    	this.frame.getContentPane().removeAll();
+		this.frame.repaint();
+		JLabel label = new JLabel(question);
+		JLabel[] labels = createLabels(answers);
+		JPanel panel = new JPanel(new GridLayout(3, 1));
+		JPanel labelPanel = new JPanel(new FlowLayout());
+	    JPanel answerPanel = new JPanel(new FlowLayout());
+	    labelPanel.add(label);
+	    addLabels(answerPanel, labels);
+	    panel.add(labelPanel);
+        panel.add(answerPanel);
+        this.frame.getContentPane().add(panel);
+        this.frame.setVisible(true);
+        panel.revalidate();
+    }
+    
     public JButton[] createButtons(String[] answers) {
 		JButton[] newButtons = new JButton[answers.length];
 		for (int i = 0; i < answers.length; i++) {
@@ -59,10 +78,47 @@ public class NewGUI implements ActionListener{
 		}
 	}
     
-	@Override
+    public JLabel[] createLabels(String[] answers) {
+		JLabel[] newLabels = new JLabel[answers.length];
+		for (int i = 0; i < answers.length; i++) {
+			JLabel jLabel = new JLabel(Integer.toString(i+1) + ". "  + answers[i]);
+			newLabels[i] = jLabel;
+		}
+		return newLabels;
+	}
+    
+    public void addLabels(JPanel answerPanel, JLabel[] labels) {
+		/*for (int i = 0; i < labels.length; i++) {
+			JPanel labelPanel = new JPanel(new FlowLayout());
+			labelPanel.add(labels[i]);
+			answerPanel.add(labelPanel);
+		}*/
+    	
+    	for (int i = 0; i < labels.length; i++) {
+			answerPanel.add(labels[i]);
+		}
+    	
+    	
+	}
+    
+    public void addLabelsToPanel(JPanel panel, JPanel[] answerPanel) {
+    	for (int i = 0; i < answerPanel.length; i++) {
+    		panel.add(answerPanel[i]);
+    	}
+    }
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getActionCommand();
-		System.out.println(source.toString());
+		if (source.toString().equals("Start over")) {
+			kSession.dispose();
+			KieServices ks = KieServices.Factory.get();
+    	    KieContainer kContainer = ks.getKieClasspathContainer();
+        	KieSession kSession = kContainer.newKieSession("ksession-rules");
+        	KieRuntimeLogger kLogger = ks.getLoggers().newFileLogger(kSession, "test");
+        	NewGUI gui = new NewGUI(kSession, kLogger);
+        	kSession.setGlobal("AnimeGUI", gui);
+        	kSession.insert("Start");
+        	kSession.fireAllRules();
+		}
 		kSession.insert(new String(source.toString()));
 		kSession.fireAllRules();
 	}

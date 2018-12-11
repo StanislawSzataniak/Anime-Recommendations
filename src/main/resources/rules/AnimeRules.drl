@@ -27,6 +27,14 @@ function void askQuestion(String question, Answer[] answers, NewGUI AnimeGUI) {
 	AnimeGUI.newFrame(question, ar);
 }
 
+function void showResult(String question, Answer[] answers, NewGUI AnimeGUI) {
+	String[] ar = new String[answers.length];
+	for (int i = 0; i < answers.length; i++) {
+		ar[i] = answers[i].getAnswer();
+	}
+	AnimeGUI.finalFrame(question, ar);
+}
+
 rule "init"
 	when
 		s : String()
@@ -50,7 +58,7 @@ rule "End"
 	when
 		f : FinalAnswer()
 	then
-		askQuestion("Your result", f.getAnswers(), AnimeGUI);
+		showResult("Your result:", f.getAnswers(), AnimeGUI);
 		AnimeGUI.kLogger.close();
 end
 
@@ -152,7 +160,7 @@ end
     	
 rule "Solid science fiction"
 	when
-        a : Answer( answer.equals("Popular flicks"))
+        a : Answer( answer.equals("Solid science fiction"))
         not UsedAnswer( answer == a.getAnswer() )
     then 
     	Answer[] answers ={new Answer("Time travel experiment"), new Answer("Psychological police dystopia")};
