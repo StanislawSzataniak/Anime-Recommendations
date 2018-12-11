@@ -88,12 +88,6 @@ public class NewGUI implements ActionListener{
 	}
     
     public void addLabels(JPanel answerPanel, JLabel[] labels) {
-		/*for (int i = 0; i < labels.length; i++) {
-			JPanel labelPanel = new JPanel(new FlowLayout());
-			labelPanel.add(labels[i]);
-			answerPanel.add(labelPanel);
-		}*/
-    	
     	for (int i = 0; i < labels.length; i++) {
 			answerPanel.add(labels[i]);
 		}
