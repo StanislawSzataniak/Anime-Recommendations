@@ -10,9 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.kie.api.KieServices;
 import org.kie.api.logger.KieRuntimeLogger;
-import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
 public class NewGUI implements ActionListener{
@@ -102,17 +100,6 @@ public class NewGUI implements ActionListener{
     }
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getActionCommand();
-		if (source.toString().equals("Start over")) {
-			kSession.dispose();
-			KieServices ks = KieServices.Factory.get();
-    	    KieContainer kContainer = ks.getKieClasspathContainer();
-        	KieSession kSession = kContainer.newKieSession("ksession-rules");
-        	KieRuntimeLogger kLogger = ks.getLoggers().newFileLogger(kSession, "test");
-        	NewGUI gui = new NewGUI(kSession, kLogger);
-        	kSession.setGlobal("AnimeGUI", gui);
-        	kSession.insert("Start");
-        	kSession.fireAllRules();
-		}
 		kSession.insert(new String(source.toString()));
 		kSession.fireAllRules();
 	}
